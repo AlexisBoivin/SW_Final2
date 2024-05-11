@@ -1,0 +1,328 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mui/mui-toolpad/v0.1.55/docs/schemas/v1/definitions.json#properties/Page
+
+apiVersion: v1
+kind: page
+spec:
+  title: GestionSousTache
+  display: shell
+  authorization:
+    allowAll: true
+  content:
+    - component: PageRow
+      name: pageRow
+      props:
+        justifyContent: start
+      children:
+        - component: Text
+          name: text
+          props:
+            variant: h1
+            value: Liste des sous-tâches
+        - component: Button
+          name: button
+          props:
+            size: large
+            color: primary
+            content: Tâches
+            onClick:
+              $$navigationAction:
+                page: GestionTache
+                parameters: {}
+          layout:
+            horizontalAlign: center
+            verticalAlign: center
+    - component: Text
+      name: text1
+      props:
+        value: Ajouter Sous-tâche
+        variant: h3
+    - component: Form
+      name: form
+      children:
+        - component: PageRow
+          name: pageRow1
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textField
+              props:
+                placeholder: id tâche
+            - component: Text
+              name: text2
+              props:
+                value: id de la tâche
+        - component: PageRow
+          name: pageRow2
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textField1
+              props:
+                placeholder: titre sous-tâche
+            - component: Text
+              name: text3
+              props:
+                value: titre de la sous-tâche
+      props:
+        submitButtonText: Ajouter
+        onSubmit:
+          $$jsExpressionAction: AjouterSousTache.call()
+    - component: Text
+      name: text4
+      props:
+        variant: h3
+        value: Modifier Statut Sous-tâche
+    - component: PageRow
+      name: pageRow3
+      props:
+        justifyContent: start
+      children:
+        - component: TextField
+          name: textField2
+          layout:
+            columnSize: 1
+        - component: PageColumn
+          name: pageColumn
+          layout:
+            columnSize: 1
+          children:
+            - component: Button
+              name: button1
+              layout:
+                columnSize: 1
+              props:
+                content: Complète
+                onClick:
+                  $$jsExpressionAction: ModifierStatutSoustache1.call()
+            - component: Button
+              name: button2
+              props:
+                content: incomplète
+                onClick:
+                  $$jsExpressionAction: ModifierStatutSoustache0.call()
+    - component: Text
+      name: text5
+      props:
+        variant: h3
+        value: Modifier Sous-tâche
+    - component: Form
+      name: form1
+      children:
+        - component: PageRow
+          name: pageRow4
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textField3
+              props:
+                placeholder: ""
+            - component: Text
+              name: text6
+              props:
+                value: id de la sous-tâche à modifier
+        - component: PageRow
+          name: pageRow5
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textField4
+              props:
+                placeholder: ""
+            - component: Text
+              name: text7
+              props:
+                value: id de la tâche lié à la sous-tâche
+        - component: PageRow
+          name: pageRow6
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textField5
+            - component: Text
+              name: text8
+              props:
+                value: titre de la sous-tâche
+      props:
+        submitButtonText: Modifier
+        onSubmit:
+          $$jsExpressionAction: ModifierSoustache.call()
+    - component: Text
+      name: text9
+      props:
+        variant: h3
+        value: Supprimer Sous-tâche
+    - component: PageRow
+      name: pageRow7
+      props:
+        justifyContent: start
+      children:
+        - component: TextField
+          name: textField6
+        - component: Button
+          name: button3
+          props:
+            size: large
+            content: Supprimer
+            onClick:
+              $$jsExpressionAction: SupprimerSoustache.call()
+          layout:
+            horizontalAlign: center
+  queries:
+    - name: AjouterSousTache
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/soustache`"
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.Authorization
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \  \"tacheid\": ${parameters.tacheid},\r
+
+              \  \"titre\":\"${parameters.titre}\"\r
+
+              }`"
+          contentType: application/json
+        method: POST
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: Authorization
+          value:
+            $$env: API_KEY
+        - name: tacheid
+          value:
+            $$jsExpression: textField.value
+        - name: titre
+          value:
+            $$jsExpression: textField1.value
+    - name: ModifierStatutSoustache0
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/soustache/statut/${parameters.id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.Authorization },
+            },
+          ]
+        method: PUT
+        body:
+          kind: raw
+          content: "{\r\n  \"complete\":0\r\n}"
+          contentType: application/json
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: id
+          value:
+            $$jsExpression: textField2.value
+        - name: Authorization
+          value:
+            $$env: API_KEY
+    - name: ModifierStatutSoustache1
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/soustache/statut/${parameters.id}`"
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.Authorization
+        body:
+          kind: raw
+          content: "{\r\n  \"complete\":1\r\n}"
+          contentType: application/json
+        method: PUT
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: id
+          value:
+            $$jsExpression: textField2.value
+        - name: Authorization
+          value:
+            $$env: API_KEY
+    - name: ModifierSoustache
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/soustache/${parameters.id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.Authorization },
+            },
+          ]
+        method: PUT
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \  \"tacheid\":${parameters.tacheid},\r
+
+              \  \"titre\":\"${parameters.titre}\"\r
+
+              }`"
+          contentType: application/json
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: Authorization
+          value:
+            $$env: API_KEY
+        - name: tacheid
+          value:
+            $$jsExpression: textField4.value
+        - name: titre
+          value:
+            $$jsExpression: textField5.value
+        - name: id
+          value:
+            $$jsExpression: textField3.value
+    - name: SupprimerSoustache
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/soustache/${parameters.id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.Authorization },
+            },
+          ]
+        method: DELETE
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: id
+          value:
+            $$jsExpression: textField6.value
+        - name: Authorization
+          value:
+            $$env: API_KEY

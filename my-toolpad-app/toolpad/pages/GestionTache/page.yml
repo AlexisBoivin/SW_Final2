@@ -1,0 +1,491 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mui/mui-toolpad/v0.1.55/docs/schemas/v1/definitions.json#properties/Page
+
+apiVersion: v1
+kind: page
+spec:
+  alias:
+    - GIEkwuG
+  title: Gestion de tâches
+  content:
+    - component: PageRow
+      name: pageRow9
+      props:
+        justifyContent: start
+      children:
+        - component: Text
+          name: text
+          props:
+            variant: h1
+            value: Liste des tâches
+        - component: Button
+          name: button3
+          props:
+            content: Sous-tâche
+            size: large
+            onClick:
+              $$navigationAction:
+                page: GestionSousTache
+                parameters: {}
+          layout:
+            horizontalAlign: center
+            verticalAlign: center
+    - component: DataGrid
+      name: dataGrid
+      props:
+        rows:
+          $$jsExpression: AfficherListe.data.tache
+        columns:
+          - field: id
+            type: number
+          - field: utilisateur_id
+            type: number
+          - field: titre
+            type: string
+          - field: description
+            type: string
+          - field: date_debut
+            type: dateTime
+          - field: date_echeance
+            type: dateTime
+          - field: complete
+            type: number
+    - component: Text
+      name: text1
+      props:
+        variant: h3
+        value: Ajouter une tâche
+    - component: Form
+      name: formAjouter
+      layout:
+        columnSize: 1
+      children:
+        - component: PageRow
+          name: pageRow2
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textTitre
+            - component: Text
+              name: text2
+              layout:
+                columnSize: 1
+              props:
+                value: Titre
+        - component: PageRow
+          name: pageRow3
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textDescription
+              layout:
+                columnSize: 1
+            - component: Text
+              name: text3
+              layout:
+                columnSize: 1
+              props:
+                value: Description
+        - component: PageRow
+          name: pageRow1
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textDateDebut
+              layout:
+                columnSize: 1
+            - component: Text
+              name: text5
+              props:
+                value: Date de début
+        - component: PageRow
+          name: pageRow
+          props:
+            justifyContent: start
+          children:
+            - component: TextField
+              name: textDateFin
+            - component: Text
+              name: text4
+              props:
+                value: Date d'échéance
+      props:
+        submitButtonText: Ajouter
+        formControlsFullWidth: false
+        hasResetButton: false
+        onSubmit:
+          $$jsExpressionAction: AjouterTache.call()
+    - component: Text
+      name: text6
+      props:
+        variant: h3
+        value: Modifier le statut de la tâche
+    - component: PageRow
+      name: pageRow10
+      props:
+        justifyContent: start
+      children:
+        - component: TextField
+          name: textField
+        - component: PageColumn
+          name: pageColumn2
+          layout:
+            columnSize: 1
+          children:
+            - component: Button
+              name: button1
+              props:
+                content: Complète
+                onClick:
+                  $$jsExpressionAction: ModifieStatutTache1.call()
+            - component: Button
+              name: button
+              props:
+                content: incomplète
+                onClick:
+                  $$jsExpressionAction: ModifieStatutTache0.call()
+              layout:
+                columnSize: 1
+    - component: PageRow
+      name: pageRow5
+      props:
+        justifyContent: start
+      children:
+        - component: Text
+          name: text7
+          props:
+            variant: h3
+            value: Détail de la tâche
+        - component: TextField
+          name: textField1
+          props:
+            defaultValue: "2"
+    - component: PageRow
+      name: pageRow6
+      props:
+        justifyContent: start
+      children:
+        - component: PageColumn
+          name: pageColumn
+          layout:
+            columnSize: 1
+          children:
+            - component: Text
+              name: text8
+              props:
+                value: Detail
+            - component: DataGrid
+              name: dataGrid1
+              layout:
+                columnSize: 1
+              props:
+                rows:
+                  $$jsExpression: DetailTache.data.tache.detail
+                columns:
+                  - field: titre
+                    type: string
+                  - field: description
+                    type: string
+                  - field: date_debut
+                    type: dateTime
+                  - field: date_echeance
+                    type: dateTime
+        - component: PageColumn
+          name: pageColumn1
+          layout:
+            columnSize: 1
+          children:
+            - component: Text
+              name: text9
+              props:
+                value: Sous-tâches
+            - component: DataGrid
+              name: dataGrid2
+              layout:
+                columnSize: 1
+              props:
+                rows:
+                  $$jsExpression: DetailTache.data.tache.soustaches
+                columns:
+                  - field: id
+                    type: number
+                  - field: tache_id
+                    type: number
+                  - field: titre
+                    type: string
+                  - field: complete
+                    type: number
+    - component: Text
+      name: text10
+      props:
+        variant: h3
+        value: Modifier la tâche
+    - component: Form
+      name: form
+      props:
+        onSubmit:
+          $$jsExpressionAction: ModifierTache.call()
+        submitButtonText: Modifier
+      layout:
+        columnSize: 1
+      children:
+        - component: PageRow
+          name: pageRow8
+          props:
+            justifyContent: start
+          children:
+            - component: PageColumn
+              name: pageColumn4
+              layout:
+                columnSize: 1
+              children:
+                - component: TextField
+                  name: textField2
+                  layout:
+                    columnSize: 1
+                  props:
+                    placeholder: id
+                    defaultValue: "1"
+                - component: TextField
+                  name: textField6
+                  props:
+                    placeholder: datedebut
+                - component: TextField
+                  name: textField5
+                  props:
+                    placeholder: dateecheance
+            - component: PageColumn
+              name: pageColumn3
+              layout:
+                columnSize: 1
+              children:
+                - component: TextField
+                  name: textField3
+                  layout:
+                    columnSize: 1
+                  props:
+                    placeholder: titre
+                - component: TextField
+                  name: textField4
+                  props:
+                    placeholder: description
+    - component: Text
+      name: text11
+      props:
+        variant: h3
+        value: Supprimer une tâche
+    - component: PageRow
+      name: pageRow7
+      props:
+        justifyContent: start
+      children:
+        - component: TextField
+          name: textFieldsuppresion
+          props:
+            placeholder: id
+            defaultValue: "1"
+        - component: Button
+          name: button2
+          props:
+            content: Supprimer
+            size: large
+            onClick:
+              $$jsExpressionAction: SupprimerTache.call()
+  queries:
+    - name: AfficherListe
+      mode: query
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/liste`"
+        searchParams: []
+        headers:
+          - name: Authorization
+            value:
+              $$env: API_KEY
+        method: GET
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+    - name: AjouterTache
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches`"
+        headers: [{ name: Authorization, value: { $$env: API_KEY } }]
+        method: POST
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \  \"titre\":\"${parameters.titre}\",\r
+
+              \  \"description\": \"${parameters.description}\",\r
+
+              \  \"datedebut\": \"${parameters.datedebut}\",\r
+
+              \  \"dateecheance\": \"${parameters.dateecheance}\"\r
+
+              \  \r
+
+              }`"
+          contentType: application/json
+        searchParams: []
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: titre
+          value:
+            $$jsExpression: textTitre.value
+        - name: description
+          value:
+            $$jsExpression: textDescription.value
+        - name: datedebut
+          value:
+            $$jsExpression: textDateDebut.value
+        - name: dateecheance
+          value:
+            $$jsExpression: textDateFin.value
+    - name: ModifieStatutTache1
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/statut/${parameters.id}`"
+        searchParams: []
+        headers: [{ name: Authorization, value: { $$env: API_KEY } }]
+        method: PUT
+        body:
+          kind: raw
+          content: "{\r\n  \"complete\":1\r\n}"
+          contentType: application/json
+      parameters:
+        - name: id
+          value:
+            $$jsExpression: textField.value
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: Authorization
+          value:
+            $$env: API_KEY
+    - name: ModifieStatutTache0
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/statut/${parameters.id}`"
+        searchParams: []
+        headers:
+          - name: Authorization
+            value:
+              $$env: API_KEY
+        body:
+          kind: raw
+          content: "{\r\n  \"complete\":0\r\n}"
+          contentType: application/json
+        method: PUT
+      parameters:
+        - name: id
+          value:
+            $$jsExpression: textField.value
+        - name: apihost
+          value:
+            $$env: API_HOST
+    - name: DetailTache
+      mode: query
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/${parameters.id}`"
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.Authorization
+        method: GET
+        searchParams: []
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: id
+          value:
+            $$jsExpression: textField1.value
+        - name: Authorization
+          value:
+            $$env: API_KEY
+    - name: ModifierTache
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/${parameters.id}`"
+        headers: []
+        method: PUT
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \  \"titre\":\"${parameters.titre}\",\r
+
+              \  \"description\": \"${parameters.description}\",\r
+
+              \  \"datedebut\": \"${parameters.datedebut}\",\r
+
+              \  \"dateecheance\": \"${parameters.dateecheance}\"\r
+
+              \  \r
+
+              }`"
+          contentType: application/json
+        searchParams: []
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: id
+          value:
+            $$jsExpression: textField2.value
+        - name: titre
+          value:
+            $$jsExpression: textField3.value
+        - name: description
+          value:
+            $$jsExpression: textField4.value
+        - name: datedebut
+          value:
+            $$jsExpression: textField6.value
+        - name: dateecheance
+          value:
+            $$jsExpression: textField5.value
+    - name: SupprimerTache
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.apihost}api/taches/${parameters.id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.Authorization },
+            },
+          ]
+        method: DELETE
+      parameters:
+        - name: apihost
+          value:
+            $$env: API_HOST
+        - name: Authorization
+          value:
+            $$env: API_KEY
+        - name: id
+          value:
+            $$jsExpression: textFieldsuppresion.value
