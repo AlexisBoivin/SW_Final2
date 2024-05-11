@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "e0e07f79-cb46-45a5-b259-244a7764dff1",
+		"name": "SW_tpFinal_Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32422682"
+	},
+	"item": [
+		{
+			"name": "AfficherListe",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/liste",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"liste"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AjouterTâche",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"titre\": \"Test\",\r\n  \"description\": \"Insertion de test\",\r\n  \"datedebut\": \"2024-05-04\",\r\n  \"dateecheance\": \"2024-05-13\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StatutTache",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"complete\": \"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/statut/20",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"statut",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DetailTache",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/2",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModifierTache",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"titre\": \"TacheModifier\",\r\n  \"description\": \"Modification de test\",\r\n  \"datedebut\": \"2024-05-04\",\r\n  \"dateecheance\": \"2024-05-13\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/4",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SupprimerTache",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/taches/8",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"taches",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AjouterSousTache",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tacheid\": 1,\r\n    \"titre\":\"chasser les bantas.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/soustache",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"soustache"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StatutSousTache",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"complete\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/soustache/statut/1",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"soustache",
+						"statut",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModifierSoustaches",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tacheid\": 1,\r\n    \"titre\":\"modificationtest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/soustache/5",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"soustache",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SupprimerSousTache",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "theforceiswithyou"
+					}
+				],
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/taches/soustache/4",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"taches",
+						"soustache",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AjouterUtilisateur",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"courriel\": \"unquatriemecourriel@gmail.com\",\r\n    \"password\": \"unmotdepasse\",\r\n    \"nom\":\"Pedro\",\r\n    \"prenom\":\"Pascal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/utilisateur/ajouter",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"utilisateur",
+						"ajouter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModifierCleUtilisateur",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"courriel\":\"unquatriemecourriel@gmail.com\",\r\n    \"password\":\"unmotdepasse\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "swfinal-alexis.onrender.com/api/utilisateur/cle",
+					"host": [
+						"swfinal-alexis",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"utilisateur",
+						"cle"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
